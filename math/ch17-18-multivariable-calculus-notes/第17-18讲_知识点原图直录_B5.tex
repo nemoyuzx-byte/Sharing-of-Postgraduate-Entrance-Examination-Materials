@@ -1,0 +1,167 @@
+% !TEX program = xelatex
+\documentclass[UTF8,10pt,fontset=none]{ctexart}
+
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+\setsansfont{Helvetica Neue}
+\setmonofont{Menlo}
+\setCJKmainfont{Songti SC}
+\setCJKsansfont[BoldFont={Source Han Sans CN}]{Source Han Sans CN}
+\xeCJKsetup{PunctStyle=plain}
+
+\usepackage[
+  paperwidth=176mm,
+  paperheight=250mm,
+  top=9mm,
+  bottom=11mm,
+  left=9mm,
+  right=9mm,
+  headheight=4mm,
+  headsep=3mm,
+  footskip=7mm
+]{geometry}
+\usepackage{amsmath,amssymb,mathtools,bm,esint}
+\usepackage{enumitem}
+\usepackage{booktabs,tabularx,array,longtable}
+\usepackage[most]{tcolorbox}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{needspace}
+\usepackage{microtype}
+\usepackage[hidelinks,unicode]{hyperref}
+
+\definecolor{MainBlue}{HTML}{155E75}
+\definecolor{DeepBlue}{HTML}{0F3D4C}
+\definecolor{NoteBlue}{HTML}{EDF5F7}
+\definecolor{SoftGray}{HTML}{F3F5F6}
+\definecolor{RuleGray}{HTML}{B8C1C5}
+
+\hypersetup{
+  pdftitle={第17—18讲知识点原图直录},
+  pdfauthor={根据所给教材图片逐项整理},
+  pdfsubject={多元函数积分学预备知识与多元函数积分学},
+  pdfkeywords={向量,空间解析几何,三重积分,曲线积分,曲面积分,格林公式,高斯公式,斯托克斯公式}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\sffamily\footnotesize 第17—18讲知识点原图直录}
+\fancyhead[R]{\sffamily\footnotesize B5单栏版}
+\fancyfoot[C]{\sffamily\footnotesize \thepage}
+\renewcommand{\headrulewidth}{0.3pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\setlength{\parindent}{1em}
+\setlength{\parskip}{0.22em}
+\setlength{\emergencystretch}{1.5em}
+\setlength{\abovedisplayskip}{3pt plus 1pt minus 1pt}
+\setlength{\belowdisplayskip}{3pt plus 1pt minus 1pt}
+\setlength{\abovedisplayshortskip}{2pt}
+\setlength{\belowdisplayshortskip}{2pt}
+\allowdisplaybreaks[3]
+
+\ctexset{
+  section={
+    format=\sffamily\bfseries\Large\color{DeepBlue},
+    beforeskip=7pt,
+    afterskip=4pt,
+    number=\chinese{section}
+  },
+  subsection={
+    format=\sffamily\bfseries\large\color{MainBlue},
+    beforeskip=5pt,
+    afterskip=2pt
+  },
+  subsubsection={
+    format=\sffamily\bfseries\normalsize\color{DeepBlue},
+    beforeskip=4pt,
+    afterskip=1pt
+  }
+}
+
+% 方法小标题沿用紧凑的行内格式，但固定从正文版心左边界开始；
+% 直接重设 paragraph，避免类文件的状态相关悬挂缩进伸入左页边。
+\makeatletter
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+  {3pt}{-0.75em}{\normalfont\bfseries\normalsize}}
+\makeatother
+% ctex 与 titlesec 组合时行内标题的标准后间距可能被吞掉；
+% 将固定间隔直接计入标题盒子，确保粗体标题与后文不发生重叠。
+\let\baseparagraph\paragraph
+\renewcommand{\paragraph}[1]{\baseparagraph{#1\hspace{1em}}}
+% 标题后紧接圈号序号时，标题单独成行并禁止在两者之间分页。
+\newcommand{\paragraphline}[1]{\paragraph{#1}\leavevmode\par\nopagebreak}
+
+\setlist[itemize]{leftmargin=1.35em,itemsep=0.12em,topsep=0.18em,parsep=0pt}
+\setlist[enumerate]{leftmargin=1.55em,itemsep=0.12em,topsep=0.18em,parsep=0pt}
+
+\newtcolorbox{notebox}[1][]{
+  enhanced,breakable,
+  colback=NoteBlue,colframe=MainBlue,
+  boxrule=0.45pt,arc=1mm,
+  left=1.2mm,right=1.2mm,top=0.8mm,bottom=0.8mm,
+  before skip=2.5pt,after skip=2.5pt,
+  fonttitle=\sffamily\bfseries,
+  title={【注】#1}
+}
+\newtcolorbox{sourcebox}[1]{
+  enhanced,breakable,
+  colback=SoftGray,colframe=DeepBlue,
+  boxrule=0.45pt,arc=1mm,
+  left=1.2mm,right=1.2mm,top=0.8mm,bottom=0.8mm,
+  before skip=2.5pt,after skip=2.5pt,
+  fonttitle=\sffamily\bfseries,
+  title={#1}
+}
+\newtcolorbox{theorembox}[1]{
+  enhanced,breakable,
+  colback=NoteBlue,colframe=DeepBlue,
+  boxrule=0.65pt,arc=1mm,
+  left=1.2mm,right=1.2mm,top=0.8mm,bottom=0.8mm,
+  before skip=2.5pt,after skip=2.5pt,
+  fonttitle=\sffamily\bfseries,
+  title={#1}
+}
+
+\newcommand{\key}[1]{\textbf{\color{DeepBlue}#1}}
+\newcommand{\prop}[1]{\par\noindent\textbf{性质 #1}\quad}
+\newcommand{\lecturetitle}[1]{\section*{#1}}
+\newcommand{\parttitle}[2]{\subsection*{#1\quad #2}}
+\newcommand{\topictitle}[2]{\subsubsection*{#1\quad #2}}
+\newcommand{\circnum}[1]{%
+  \tikz[baseline=(char.base)]\node[
+    circle,draw=DeepBlue,line width=0.45pt,
+    inner sep=0.25pt,minimum size=1.45em,
+    font=\sffamily\bfseries\scriptsize,text=DeepBlue
+  ](char){#1};%
+}
+\newcommand{\circitem}[1]{\par\noindent\circnum{#1}\enspace}
+\newcommand{\parenitem}[1]{\par\noindent（#1）\enspace}
+\newcommand{\dd}{\mathop{}\!\mathrm d}
+\newcommand{\grad}{\operatorname{grad}}
+\newcommand{\diver}{\operatorname{div}}
+\newcommand{\rot}{\operatorname{rot}}
+\newcommand{\prj}{\operatorname{Prj}}
+\newcommand{\iiintO}{\iiint\limits_{\Omega}}
+\newcommand{\iintS}{\iint\limits_{\Sigma}}
+\newcommand{\intL}{\int\limits_L}
+\newcommand{\oiintS}{\oiint\limits_{\Sigma}}
+\newcommand{\ointL}{\oint\limits_L}
+\newcommand{\br}{\bm r}
+\newcommand{\bF}{\bm F}
+\newcommand{\bn}{\bm n}
+\newcommand{\bS}{\bm S}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+\input{原图直录_二次曲面图.tex}
+
+\begin{document}
+\fontsize{9}{11}\selectfont
+\input{原图直录_第17讲_原序号.tex}
+\input{原图直录_第18讲.tex}
+\end{document}

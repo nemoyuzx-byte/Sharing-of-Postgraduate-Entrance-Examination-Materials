@@ -1,0 +1,510 @@
+\lecturetitle{第17讲\quad 多元函数积分学的预备知识（仅数学一）}
+
+\parttitle{一}{向量代数}
+
+\topictitle{1}{向量及其表达形式}
+
+既有大小又有方向的量称为\key{向量}。
+
+\begin{notebox}
+两个向量，只要它们的大小相等、方向相同，它们就是相等的向量，与它们在空间中的位置无关（这也称为向量的自由性）。
+\end{notebox}
+
+向量的表达形式为 $\bm a=(a_x,a_y,a_z)=a_x\bm i+a_y\bm j+a_z\bm k$，其模为 $|\bm a|=\sqrt{a_x^2+a_y^2+a_z^2}$。
+
+\topictitle{2}{向量的运算及其应用}
+
+设 $\bm a=(a_x,a_y,a_z)$，$\bm b=(b_x,b_y,b_z)$，$\bm c=(c_x,c_y,c_z)$，$\bm a,\bm b,\bm c$ 均为非零向量。
+
+\paragraphline{（1）数量积（内积、点积）及其应用}
+
+\circitem{1} $\bm a\cdot\bm b=(a_x,a_y,a_z)\cdot(b_x,b_y,b_z)=a_xb_x+a_yb_y+a_zb_z$。
+
+\circitem{2} $\bm a\cdot\bm b=|\bm a|\,|\bm b|\cos\theta$，则
+$\displaystyle \cos\theta=\frac{\bm a\cdot\bm b}{|\bm a|\,|\bm b|}
+=\frac{a_xb_x+a_yb_y+a_zb_z}
+{\sqrt{a_x^2+a_y^2+a_z^2}\sqrt{b_x^2+b_y^2+b_z^2}}$，其中 $\theta$ 为 $\bm a,\bm b$ 的夹角。
+
+\circitem{3} $\bm a\perp\bm b\Longleftrightarrow\theta=\dfrac{\pi}{2}
+\Longleftrightarrow\bm a\cdot\bm b=|\bm a|\,|\bm b|\cos\theta=0
+\Longleftrightarrow a_xb_x+a_yb_y+a_zb_z=0$。
+
+\circitem{4} $\displaystyle \prj_{\bm b}\bm a
+=\frac{\bm a\cdot\bm b}{|\bm b|}
+=\frac{a_xb_x+a_yb_y+a_zb_z}{\sqrt{b_x^2+b_y^2+b_z^2}}
+=|\bm a|\cos\theta$，称为 $\bm a$ 在 $\bm b$ 上的投影。
+
+\paragraphline{（2）向量积（外积、叉积）及其应用}
+
+\circitem{1}
+\[
+\bm a\times\bm b=
+\begin{vmatrix}
+\bm i&\bm j&\bm k\\
+a_x&a_y&a_z\\
+b_x&b_y&b_z
+\end{vmatrix},
+\qquad |\bm a\times\bm b|=|\bm a|\,|\bm b|\sin\theta .
+\]
+其中 $\bm a\times\bm b$ 的方向用右手法则确定，转向角不超过 $\pi$；$\bm a\times\bm b$ 同时垂直于 $\bm a,\bm b$，而 $|\bm a\times\bm b|$ 为以 $\bm a,\bm b$ 为邻边的平行四边形面积。
+
+\circitem{2} $\bm a\parallel\bm b\Longleftrightarrow\theta=0$ 或 $\pi
+\Longleftrightarrow\bm a\times\bm b=\bm0
+\Longleftrightarrow\dfrac{a_x}{b_x}=\dfrac{a_y}{b_y}=\dfrac{a_z}{b_z}$。
+
+\paragraphline{（3）混合积及其应用}
+
+\circitem{1}
+\[
+[\bm a,\bm b,\bm c]=(\bm a\times\bm b)\cdot\bm c
+=\begin{vmatrix}
+a_x&a_y&a_z\\
+b_x&b_y&b_z\\
+c_x&c_y&c_z
+\end{vmatrix}.
+\]
+
+\circitem{2} $[\bm a,\bm b,\bm c]=0\Longleftrightarrow\bm a,\bm b,\bm c$ 共面；$|[\bm a,\bm b,\bm c]|$ 是以 $\bm a,\bm b,\bm c$ 为棱的平行六面体体积。
+
+\topictitle{3}{向量的方向角和方向余弦}
+
+\parenitem{1} 非零向量 $\bm a$ 与 $x$ 轴、$y$ 轴和 $z$ 轴正向的夹角 $\alpha,\beta,\gamma$，称为 $\bm a$ 的方向角。
+
+\parenitem{2} $\cos\alpha,\cos\beta,\cos\gamma$ 称为 $\bm a$ 的方向余弦，且
+$\displaystyle \cos\alpha=\frac{a_x}{|\bm a|}$，
+$\displaystyle \cos\beta=\frac{a_y}{|\bm a|}$，
+$\displaystyle \cos\gamma=\frac{a_z}{|\bm a|}$。
+
+\parenitem{3} $\displaystyle \bm a^\circ=\frac{\bm a}{|\bm a|}
+=(\cos\alpha,\cos\beta,\cos\gamma)$ 称为向量 $\bm a$ 的单位向量。
+
+\parenitem{4} 任意向量
+\[
+\bm r=x\bm i+y\bm j+z\bm k
+=r(\cos\alpha,\cos\beta,\cos\gamma),
+\qquad r=\sqrt{x^2+y^2+z^2},
+\]
+称为位置向量（表示方向的向量），其中
+$\displaystyle \cos\alpha=\frac{x}{r}$，
+$\displaystyle \cos\beta=\frac{y}{r}$，
+$\displaystyle \cos\gamma=\frac{z}{r}$，且
+$\cos^2\alpha+\cos^2\beta+\cos^2\gamma=1$。
+
+\parttitle{二}{空间平面与直线}
+
+\topictitle{1}{平面方程}
+
+以下假设平面的法向量为 $\bm n=(A,B,C)$。
+
+\circitem{1} 一般式：$Ax+By+Cz+D=0$。
+
+\circitem{2} 点法式：$A(x-x_0)+B(y-y_0)+C(z-z_0)=0$。
+
+\circitem{3} 三点式：
+\[
+\begin{vmatrix}
+x-x_1&y-y_1&z-z_1\\
+x-x_2&y-y_2&z-z_2\\
+x-x_3&y-y_3&z-z_3
+\end{vmatrix}=0,
+\]
+其中平面过不共线的三点 $P_i(x_i,y_i,z_i)$（$i=1,2,3$）。
+
+\circitem{4} 截距式：$\displaystyle \frac{x}{a}+\frac{y}{b}+\frac{z}{c}=1$，平面过 $(a,0,0),(0,b,0),(0,0,c)$ 三点。
+
+\circitem{5} 平面束方程：设
+$\pi_i:A_ix+B_iy+C_iz+D_i=0$（$i=1,2$），且
+$A_1,B_1,C_1$ 与 $A_2,B_2,C_2$ 不成比例，则过两平面交线
+\[
+L:\begin{cases}
+A_1x+B_1y+C_1z+D_1=0,\\
+A_2x+B_2y+C_2z+D_2=0
+\end{cases}
+\]
+的平面束方程为
+$A_1x+B_1y+C_1z+D_1+\lambda(A_2x+B_2y+C_2z+D_2)=0$（不含 $\pi_2$），或
+$A_2x+B_2y+C_2z+D_2+\lambda(A_1x+B_1y+C_1z+D_1)=0$（不含 $\pi_1$）。
+
+\topictitle{2}{直线方程}
+
+以下假设直线的方向向量 $\bm\tau=(l,m,n)$。
+
+\circitem{1} 一般式：
+\[
+\begin{cases}
+A_1x+B_1y+C_1z+D_1=0,\\
+A_2x+B_2y+C_2z+D_2=0,
+\end{cases}
+\qquad
+\bm n_1=(A_1,B_1,C_1),\quad
+\bm n_2=(A_2,B_2,C_2),
+\]
+其中 $\bm n_1$ 不平行于 $\bm n_2$。
+
+\begin{notebox}
+其几何背景是两个平面的交线，且该直线的方向向量 $\bm\tau=\bm n_1\times\bm n_2$。
+\end{notebox}
+
+\circitem{2} 点向式：$\displaystyle
+\frac{x-x_0}{l}=\frac{y-y_0}{m}=\frac{z-z_0}{n}$。
+
+\circitem{3} 参数式：$x=x_0+lt,\ y=y_0+mt,\ z=z_0+nt$，$P_0(x_0,y_0,z_0)$ 为直线上的已知点，$t$ 为参数。
+
+\circitem{4} 两点式：
+\[
+\frac{x-x_1}{x_2-x_1}
+=\frac{y-y_1}{y_2-y_1}
+=\frac{z-z_1}{z_2-z_1},
+\]
+直线过不同的两点 $P_i(x_i,y_i,z_i)$（$i=1,2$）。
+
+\topictitle{3}{位置关系}
+
+\paragraph{（1）点到直线的距离}
+
+点 $M_1(x_1,y_1,z_1)$ 到直线
+$\displaystyle L:\frac{x-x_0}{l}=\frac{y-y_0}{m}=\frac{z-z_0}{n}$
+的距离为
+$\displaystyle d=\frac{|\bm\tau\times\overrightarrow{M_1M_0}|}{|\bm\tau|}$，
+其中 $\overrightarrow{M_1M_0}=(x_0-x_1,y_0-y_1,z_0-z_1)$，$M_0=(x_0,y_0,z_0)$，$\bm\tau=(l,m,n)$。
+
+\begin{notebox}
+在二维平面上，直线 $L$ 的方程为 $Ax+By+C=0$，点 $P_0$ 的坐标为 $(x_0,y_0)$，则
+$\displaystyle d=\frac{|Ax_0+By_0+C|}{\sqrt{A^2+B^2}}$。
+\end{notebox}
+
+\paragraph{（2）点到平面的距离}
+
+点 $P_0(x_0,y_0,z_0)$ 到平面 $Ax+By+Cz+D=0$ 的距离为
+$\displaystyle d=\frac{|Ax_0+By_0+Cz_0+D|}{\sqrt{A^2+B^2+C^2}}$。
+
+\paragraph{（3）直线与直线}
+
+设 $\bm\tau_1=(l_1,m_1,n_1)$，$\bm\tau_2=(l_2,m_2,n_2)$ 分别为直线 $L_1,L_2$ 的方向向量。
+
+\circitem{1} $L_1\perp L_2\Longleftrightarrow\bm\tau_1\perp\bm\tau_2
+\Longleftrightarrow l_1l_2+m_1m_2+n_1n_2=0$。
+
+\circitem{2} $L_1\parallel L_2\Longleftrightarrow\bm\tau_1\parallel\bm\tau_2
+\Longleftrightarrow\dfrac{l_1}{l_2}=\dfrac{m_1}{m_2}=\dfrac{n_1}{n_2}$。
+
+\circitem{3} 直线 $L_1,L_2$ 的夹角
+$\displaystyle \theta=\arccos\frac{|\bm\tau_1\cdot\bm\tau_2|}
+{|\bm\tau_1|\,|\bm\tau_2|}$，其中
+$\theta=\min\{(\bm\tau_1,\bm\tau_2),\pi-(\bm\tau_1,\bm\tau_2)\}
+\in[0,\frac{\pi}{2}]$。
+
+\paragraph{（4）平面与平面}
+
+设平面 $\pi_1,\pi_2$ 的法向量分别为 $\bm n_1=(A_1,B_1,C_1)$，$\bm n_2=(A_2,B_2,C_2)$。
+
+\circitem{1} $\pi_1\perp\pi_2\Longleftrightarrow\bm n_1\perp\bm n_2
+\Longleftrightarrow A_1A_2+B_1B_2+C_1C_2=0$。
+
+\circitem{2} $\pi_1\parallel\pi_2\Longleftrightarrow\bm n_1\parallel\bm n_2
+\Longleftrightarrow\dfrac{A_1}{A_2}=\dfrac{B_1}{B_2}=\dfrac{C_1}{C_2}$。
+
+\circitem{3} 平面 $\pi_1,\pi_2$ 的夹角
+$\displaystyle \theta=\arccos\frac{|\bm n_1\cdot\bm n_2|}
+{|\bm n_1|\,|\bm n_2|}$，其中
+$\theta=\min\{(\bm n_1,\bm n_2),\pi-(\bm n_1,\bm n_2)\}
+\in[0,\frac{\pi}{2}]$。
+
+\paragraph{（5）平面与直线}
+
+设直线 $L$ 的方向向量为 $\bm\tau=(l,m,n)$，平面 $\pi$ 的法向量为 $\bm n=(A,B,C)$。
+
+\circitem{1} $L\perp\pi\Longleftrightarrow\bm\tau\parallel\bm n
+\Longleftrightarrow\dfrac{l}{A}=\dfrac{m}{B}=\dfrac{n}{C}$。
+
+\circitem{2} $L\parallel\pi\Longleftrightarrow\bm\tau\perp\bm n
+\Longleftrightarrow Al+Bm+Cn=0$。
+
+\circitem{3} 直线 $L$ 与平面 $\pi$ 的夹角
+$\displaystyle \theta=\arcsin\frac{|\bm\tau\cdot\bm n|}
+{|\bm\tau|\,|\bm n|}$，其中
+$\theta=\left|\frac{\pi}{2}-(\bm\tau,\bm n)\right|
+\in[0,\frac{\pi}{2}]$。
+
+\parttitle{三}{空间曲线与曲面}
+
+\topictitle{1}{空间曲线}
+
+\parenitem{1} 一般式：
+$\displaystyle \Gamma:\begin{cases}F(x,y,z)=0,\\G(x,y,z)=0.\end{cases}$
+
+\begin{notebox}
+其几何背景为两个曲面的交线。
+\end{notebox}
+
+\parenitem{2} 参数方程：
+$\displaystyle \Gamma:\begin{cases}
+x=\varphi(t),\\y=\psi(t),\\z=\omega(t),
+\end{cases}\ t\in[\alpha,\beta]$。
+
+\begin{notebox}
+在方程组 $\begin{cases}F(x,y,z)=0,\\G(x,y,z)=0\end{cases}$ 中选取某直角坐标变量为自变量（看作参数），解出其他两个变量为此变量的函数，即得参数式；若不便解出，可另用新变量作参数。
+\end{notebox}
+
+\parenitem{3} 在坐标面上的投影。
+
+以求曲线 $\Gamma$ 在 $xOy$ 平面上的投影曲线为例：将
+$\displaystyle \Gamma:\begin{cases}F(x,y,z)=0,\\G(x,y,z)=0\end{cases}$
+中的 $z$ 消去，得到 $\varphi(x,y)=0$，则曲线 $\Gamma$ 在 $xOy$ 面上的投影曲线包含于
+$\displaystyle \begin{cases}\varphi(x,y)=0,\\z=0.\end{cases}$
+曲线在其他平面上的投影曲线可类似求得。
+
+\begin{notebox}
+若空间曲线由方程组 $\begin{cases}F(x,y,z)=0,\\G(x,y,z)=0\end{cases}$ 给出，则消去某变量（例如消去 $z$），可得该曲线在 $z=0$ 平面上的投影曲线方程
+$\begin{cases}f(x,y)=0,\\z=0.\end{cases}$
+如果 $f(x,y)=0$ 能容易地写成参数式 $x=x(t),y=y(t)$，代入原曲线方程中，若能解得单值的 $z=z(t)$，则原曲线的参数式为 $x=x(t),y=y(t),z=z(t)$。
+\end{notebox}
+
+\topictitle{2}{空间曲面}
+
+\parenitem{1} 曲面方程：$F(x,y,z)=0$。
+
+\parenitem{2} 二次曲面。
+
+\begingroup
+\renewcommand{\arraystretch}{1.13}
+\setlength{\LTpre}{2pt}
+\setlength{\LTpost}{3pt}
+\begin{longtable}{@{}p{27mm}p{75mm}>{\centering\arraybackslash}p{45mm}@{}}
+\toprule
+\textbf{曲面名称} & \textbf{方程与截痕注释} & \textbf{图形} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{曲面名称} & \textbf{方程与截痕注释} & \textbf{图形（续）} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+
+\key{椭球面} &
+$\displaystyle\frac{x^2}{a^2}+\frac{y^2}{b^2}+\frac{z^2}{c^2}=1$。
+$a=b=c$ 时为球面；用平行于坐标面的平面截取，截痕为椭圆或圆。 &
+\figEllipsoid \\[1mm]\midrule
+
+\key{单叶双曲面} &
+$\displaystyle\frac{x^2}{a^2}+\frac{y^2}{b^2}-\frac{z^2}{c^2}=1$（两正一负）。
+用 $x=k_1$ 或 $y=k_2$ 截得双曲线；用 $z=k_3$ 截得椭圆或圆。 &
+\figOneSheet \\[1mm]\midrule
+
+\key{双叶双曲面} &
+$\displaystyle\frac{x^2}{a^2}-\frac{y^2}{b^2}-\frac{z^2}{c^2}=1$（一正两负，正号对应中心轴）。
+用 $y=k$ 或 $z=k$ 截得双曲线；用 $x=k$（$|k|>|a|$）截得椭圆或圆。 &
+\figTwoSheet \\[1mm]\midrule
+
+\key{椭圆抛物面} &
+$\displaystyle\frac{x^2}{2p}+\frac{y^2}{2q}=z\ (p,q>0)$。
+一般考 $p=q$；用 $x=k$ 或 $y=k$ 截得抛物线，用 $z=k$（$k>0$）截得椭圆或圆。 &
+\figParaboloid \\[1mm]\midrule
+
+\key{椭圆锥面} &
+$\displaystyle\frac{x^2}{a^2}+\frac{y^2}{b^2}=\frac{z^2}{c^2}$。
+一般考 $a=b$；$z=\sqrt{x^2+y^2}$ 只有上半部分。 &
+\figCone \\[1mm]\midrule
+
+\key{双曲抛物面（马鞍面）} &
+$\displaystyle-\frac{x^2}{2p}+\frac{y^2}{2q}=z\ (p,q>0)$。
+用 $z=k$ 截得双曲线，用 $x=k$ 或 $y=k$ 截得抛物线。常见形式 $z=xy$；令 $u=y+x,v=y-x$，则 $z=uv$。 &
+\figSaddle
+\end{longtable}
+\endgroup
+
+\parenitem{3} 柱面：动直线沿定曲线平行移动所形成的曲面。
+
+\begingroup
+\renewcommand{\arraystretch}{1.13}
+\setlength{\LTpre}{2pt}
+\setlength{\LTpost}{3pt}
+\begin{longtable}{@{}p{27mm}p{75mm}>{\centering\arraybackslash}p{45mm}@{}}
+\toprule
+\textbf{曲面名称} & \textbf{方程与注释} & \textbf{图形} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{曲面名称} & \textbf{方程与注释} & \textbf{图形（续）} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+
+\key{椭圆柱面} &
+$\displaystyle\frac{x^2}{a^2}+\frac{y^2}{b^2}=1$。
+准线为椭圆或圆；方程缺少 $z$，母线平行于 $z$ 轴。 &
+\figEllipticCylinder \\[1mm]\midrule
+
+\key{双曲柱面} &
+$\displaystyle\frac{x^2}{a^2}-\frac{y^2}{b^2}=1$。
+准线为双曲线；方程缺少 $z$，母线平行于 $z$ 轴。 &
+\figHyperbolicCylinder \\[1mm]\midrule
+
+\key{抛物柱面} &
+$\displaystyle y=ax^2\ (a>0)$。
+准线为抛物线；方程缺少 $z$，母线平行于 $z$ 轴。 &
+\figParabolicCylinder
+\end{longtable}
+\endgroup
+
+\parenitem{4} 旋转曲面：曲线 $\Gamma$ 绕一条定直线旋转一周所形成的曲面。
+
+设旋转轴经过点 $M_0(x_0,y_0,z_0)$，方向向量为 $\bm\tau=(l,m,n)$；母线上任取一点 $M_1(x_1,y_1,z_1)$，过 $M_1$ 的纬圆上的任意一点为 $P(x,y,z)$，则
+\[
+\begin{cases}
+l(x-x_1)+m(y-y_1)+n(z-z_1)=0,\\
+(x-x_0)^2+(y-y_0)^2+(z-z_0)^2
+=(x_1-x_0)^2+(y_1-y_0)^2+(z_1-z_0)^2.
+\end{cases}
+\]
+与方程 $F(x_1,y_1,z_1)=0$ 和 $G(x_1,y_1,z_1)=0$ 联立，消去 $x_1,y_1,z_1$，便可得到旋转曲面的方程。
+
+\begin{notebox}
+常考曲线
+$\displaystyle \Gamma:\begin{cases}F(x,y,z)=0,\\G(x,y,z)=0\end{cases}$
+绕 $z$ 轴旋转一周而成的旋转曲面。取 $M_1(x_1,y_1,z_1)$，则
+$x^2+y^2=x_1^2+y_1^2$ 且 $z=z_1$；从
+$\begin{cases}F(x_1,y_1,z)=0,\\G(x_1,y_1,z)=0,\\x^2+y^2=x_1^2+y_1^2\end{cases}$
+中消去 $x_1,y_1$ 即得。若能解出 $x_1=f_1(z),y_1=f_2(z)$，则
+$x^2+y^2=[f_1(z)]^2+[f_2(z)]^2$。
+\end{notebox}
+
+\parttitle{四}{多元函数微分学的几何应用}
+
+\topictitle{1}{空间曲线的切线与法平面}
+
+\parenitem{1} 用参数方程给出曲线：
+$x=x(t),y=y(t),z=z(t)$，$t\in I$。若在 $t=t_0$ 时三个导数不同时为 $0$，则曲线在 $P_0(x_0,y_0,z_0)$ 处的切向量
+$\bm\tau=(x'(t_0),y'(t_0),z'(t_0))$；切线方程
+$\displaystyle \frac{x-x_0}{x'(t_0)}
+=\frac{y-y_0}{y'(t_0)}
+=\frac{z-z_0}{z'(t_0)}$；法平面方程
+$x'(t_0)(x-x_0)+y'(t_0)(y-y_0)+z'(t_0)(z-z_0)=0$。
+
+\parenitem{2} 用方程组给出曲线：
+$\displaystyle \begin{cases}F(x,y,z)=0,\\G(x,y,z)=0.\end{cases}$
+曲线在 $P_0$ 处的切向量为
+\[
+\bm\tau=
+\begin{vmatrix}
+\bm i&\bm j&\bm k\\
+F_x&F_y&F_z\\
+G_x&G_y&G_z
+\end{vmatrix}_{P_0}
+=\nabla F(P_0)\times\nabla G(P_0).
+\]
+若记 $\bm\tau=(A,B,C)$，则切线方程为
+$\displaystyle \frac{x-x_0}{A}=\frac{y-y_0}{B}=\frac{z-z_0}{C}$，
+法平面方程为 $A(x-x_0)+B(y-y_0)+C(z-z_0)=0$。
+
+\topictitle{2}{空间曲面的切平面与法线}
+
+\parenitem{1} 用隐式方程给出曲面：$F(x,y,z)=0$，其中 $F$ 的一阶偏导数连续。曲面在 $P_0(x_0,y_0,z_0)$ 处的法向量
+$\bm n=(F_x(P_0),F_y(P_0),F_z(P_0))$；切平面方程
+$F_x(P_0)(x-x_0)+F_y(P_0)(y-y_0)+F_z(P_0)(z-z_0)=0$；法线方程
+$\displaystyle \frac{x-x_0}{F_x(P_0)}
+=\frac{y-y_0}{F_y(P_0)}
+=\frac{z-z_0}{F_z(P_0)}$。
+
+\parenitem{2} 用显式函数给出曲面：$z=f(x,y)$，其中 $f$ 的一阶偏导数连续。曲面在 $P_0(x_0,y_0,z_0)$ 处取方向向下的法向量
+$\bm n=(f_x(x_0,y_0),f_y(x_0,y_0),-1)$；切平面方程
+$f_x(x_0,y_0)(x-x_0)+f_y(x_0,y_0)(y-y_0)-(z-z_0)=0$；法线方程
+$\displaystyle \frac{x-x_0}{f_x(x_0,y_0)}
+=\frac{y-y_0}{f_y(x_0,y_0)}
+=\frac{z-z_0}{-1}$。
+
+\begin{notebox}
+若曲面上任一点的法向量都与某一固定向量 $\bm\tau$ 垂直，即 $\nabla F(x,y,z)\cdot\bm\tau=0$ 恒成立，则该曲面是以 $\bm\tau$ 为母线方向的柱面。
+\end{notebox}
+
+\parttitle{五}{场论初步}
+
+\topictitle{1}{方向导数}
+
+\key{定义}\quad 设三元函数 $u=u(x,y,z)$ 在点 $P_0(x_0,y_0,z_0)$ 的某空间邻域 $U\subset\mathbb R^3$ 内有定义，$l$ 为从点 $P_0$ 出发的射线，$P(x,y,z)$ 为 $l$ 上且在 $U$ 内的任一点，令
+$x-x_0=t\cos\alpha$，$y-y_0=t\cos\beta$，$z-z_0=t\cos\gamma$。若极限
+\[
+\lim_{t\to0^+}\frac{u(P)-u(P_0)}{t}
+=\lim_{t\to0^+}
+\frac{u(x_0+t\cos\alpha,y_0+t\cos\beta,z_0+t\cos\gamma)-u(x_0,y_0,z_0)}{t}
+\]
+存在，则称此极限为函数 $u=u(x,y,z)$ 在点 $P_0$ 沿方向 $l$ 的方向导数，记作
+$\left.\dfrac{\partial u}{\partial l}\right|_{P_0}$。
+
+\begin{theorembox}{定理（方向导数的计算公式）}
+设三元函数 $u=u(x,y,z)$ 在点 $P_0(x_0,y_0,z_0)$ 处可微分，则 $u$ 在点 $P_0$ 沿任一方向 $l$ 的方向导数都存在，且
+\[
+\left.\frac{\partial u}{\partial l}\right|_{P_0}
+=u_x(P_0)\cos\alpha+u_y(P_0)\cos\beta+u_z(P_0)\cos\gamma,
+\]
+其中 $\cos\alpha,\cos\beta,\cos\gamma$ 为方向 $l$ 的方向余弦。
+\end{theorembox}
+
+\begin{notebox}
+二元函数 $f(x,y)$ 的情况与三元函数类似。
+\end{notebox}
+
+\topictitle{2}{梯度}
+
+\key{定义}\quad 设三元函数 $u=u(x,y,z)$ 在点 $P_0(x_0,y_0,z_0)$ 处具有一阶连续偏导数，则定义梯度为
+
+\noindent$\left.\grad u\right|_{P_0}=(u_x(P_0),u_y(P_0),u_z(P_0))$。
+
+\begin{notebox}
+$\grad(u\pm v)=\grad u\pm\grad v$；
+$\grad(uv)=v\grad u+u\grad v$；
+$\displaystyle \grad\!\left(\frac uv\right)
+=\frac{v\grad u-u\grad v}{v^2}$（$v\ne0$）。
+\end{notebox}
+
+\topictitle{3}{方向导数与梯度的关系}
+
+由方向导数的计算公式与梯度的定义，可得
+$\displaystyle \left.\frac{\partial u}{\partial l}\right|_{P_0}
+=\left.\grad u\right|_{P_0}\cdot\bm l^\circ
+=\left|\left.\grad u\right|_{P_0}\right|\cos\theta$，
+其中 $\theta$ 为 $\left.\grad u\right|_{P_0}$ 与 $\bm l^\circ$ 的夹角。
+
+\circitem{1} 当 $\cos\theta=1$ 时，$\left.\dfrac{\partial u}{\partial l}\right|_{P_0}$ 有最大值。
+
+\circitem{2} 当 $\cos\theta=0$，即 $\theta=\dfrac{\pi}{2}$ 时，向量 $l$ 与梯度垂直，有
+$\left.\dfrac{\partial u}{\partial l}\right|_{P_0}=0$，即变化率为 $0$。
+
+于是有重要结论：函数在某点的梯度是一个向量，它的方向与取得最大方向导数的方向一致，而它的模为方向导数的最大值：
+$\displaystyle |\grad u|=\sqrt{u_x^2+u_y^2+u_z^2}$。
+
+\topictitle{4}{散度}
+
+\key{定义}\quad 设向量场
+$\bm A(x,y,z)=P(x,y,z)\bm i+Q(x,y,z)\bm j+R(x,y,z)\bm k$，则
+$\displaystyle \diver\bm A=\frac{\partial P}{\partial x}
++\frac{\partial Q}{\partial y}
++\frac{\partial R}{\partial z}$，叫作向量场 $\bm A$ 的散度。
+
+\topictitle{5}{旋度}
+
+\key{定义}\quad 设向量场
+$\bm A(x,y,z)=P(x,y,z)\bm i+Q(x,y,z)\bm j+R(x,y,z)\bm k$，则
+\[
+\rot\bm A=
+\begin{vmatrix}
+\bm i&\bm j&\bm k\\
+\dfrac{\partial}{\partial x}&\dfrac{\partial}{\partial y}&\dfrac{\partial}{\partial z}\\
+P&Q&R
+\end{vmatrix},
+\]
+叫作向量场 $\bm A$ 的旋度。
+
+\begin{notebox}
+设 $z=f(x,y)$ 可微，记不共线的方向
+$\bm l_1^\circ=(\cos\alpha_1,\cos\beta_1)$ 与
+$\bm l_2^\circ=(\cos\alpha_2,\cos\beta_2)$，且
+$\begin{vmatrix}\cos\alpha_1&\cos\beta_1\\
+\cos\alpha_2&\cos\beta_2\end{vmatrix}\ne0$。
+
+（1）若沿两个方向的方向导数不全为 $0$，则相应非齐次方程组有唯一解。
+
+（2）若沿两个方向的方向导数均为 $0$，则 $f_x=f_y=0$，故 $\dd f=0$，从而 $f(x,y)$ 为常数。
+\end{notebox}
