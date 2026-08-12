@@ -1,0 +1,503 @@
+% !TEX program = xelatex
+\documentclass[UTF8,zihao=5,fontset=mac]{ctexart}
+
+\usepackage[paperwidth=182mm,paperheight=257mm,left=10mm,right=10mm,top=13mm,bottom=14mm,headheight=19pt,headsep=3mm,footskip=7mm]{geometry}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{array,booktabs,tabularx,multicol}
+\usepackage[most]{tcolorbox}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{hyperref}
+
+\definecolor{mainblue}{HTML}{245F78}
+\definecolor{lightblue}{HTML}{EAF3F6}
+\definecolor{deepblue}{HTML}{123E52}
+\definecolor{warm}{HTML}{A34A28}
+\definecolor{softgray}{HTML}{F4F5F5}
+\definecolor{ink}{HTML}{222222}
+
+\hypersetup{colorlinks=true,linkcolor=mainblue,urlcolor=mainblue,pdfauthor={线性代数第一章整理},pdftitle={行列式重点题、公式与形状}}
+\linespread{0.92}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0.08em}
+\setlength{\jot}{2pt}
+\allowdisplaybreaks[3]
+\raggedbottom
+\setlist[itemize]{leftmargin=2em,itemsep=0.08em,topsep=0.1em,parsep=0pt}
+\setlist[enumerate]{leftmargin=2.2em,itemsep=0.08em,topsep=0.1em,parsep=0pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\footnotesize\color{mainblue}线性代数第一章·行列式重点整理}
+\fancyhead[R]{\footnotesize\color{mainblue}\leftmark}
+\fancyfoot[C]{\color{mainblue}\thepage}
+\renewcommand{\headrulewidth}{0.35pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{mainblue}\leaders\hrule height \headrulewidth\hfill}}
+
+\titleformat{\section}{\large\bfseries\color{deepblue}}{\thesection}{0.6em}{}
+\titleformat{\subsection}{\normalsize\bfseries\color{mainblue}}{\thesubsection}{0.55em}{}
+\titlespacing*{\section}{0pt}{0.55em}{0.25em}
+\titlespacing*{\subsection}{0pt}{0.45em}{0.18em}
+
+\newtcolorbox{problembox}[1][]{enhanced,breakable,colback=white,colframe=mainblue,boxrule=0.6pt,arc=1.5mm,left=2mm,right=2mm,top=1.2mm,bottom=1.2mm,before skip=3pt,after skip=3pt,title={#1},fonttitle=\bfseries,coltitle=white,colbacktitle=mainblue,attach boxed title to top left={xshift=2mm,yshift=-1.5mm},boxed title style={arc=1mm}}
+\newtcolorbox{summarybox}[1][对应总结]{enhanced,breakable,colback=lightblue,colframe=mainblue,boxrule=0.45pt,arc=1.5mm,left=2mm,right=2mm,top=1mm,bottom=1mm,before skip=3pt,after skip=3pt,title={#1},fonttitle=\bfseries,coltitle=deepblue,colbacktitle=lightblue}
+\newtcolorbox{warningbox}[1][易错点]{enhanced,breakable,colback=white,colframe=warm,boxrule=0.5pt,arc=1.5mm,left=2mm,right=2mm,top=1mm,bottom=1mm,before skip=3pt,after skip=3pt,title={#1},fonttitle=\bfseries,coltitle=warm,colbacktitle=white}
+\newtcolorbox{shapebox}[1][]{enhanced,breakable,colback=softgray,colframe=mainblue!55,boxrule=0.4pt,arc=1.2mm,left=1.5mm,right=1.5mm,top=0.8mm,bottom=0.8mm,before skip=2pt,after skip=2pt,title={#1},fonttitle=\bfseries,coltitle=deepblue,colbacktitle=softgray}
+
+\newcommand{\key}[1]{\textcolor{warm}{\bfseries #1}}
+\newcommand{\dd}{\mathop{}\!\mathrm d}
+\newcommand{\mat}[1]{\begin{bmatrix}#1\end{bmatrix}}
+\newcommand{\dmat}[1]{\begin{vmatrix}#1\end{vmatrix}}
+\newcommand{\tagstar}{\textcolor{warm}{$\bigstar$}}
+\newcommand{\tagtyp}{\textcolor{warm}{\fbox{典}}}
+\newcommand{\clawTL}{\tikz[baseline=-0.55ex,x=1.35em,y=1.35em]{\draw[ink,line width=.45pt](-.18,0)--(-.18,1) (1.18,0)--(1.18,1);\draw[mainblue,line width=1pt,line cap=round,line join=round](0,0)--(0,1)--(1,1) (0,1)--(1,0);}}
+\newcommand{\clawTR}{\tikz[baseline=-0.55ex,x=1.35em,y=1.35em]{\draw[ink,line width=.45pt](-.18,0)--(-.18,1) (1.18,0)--(1.18,1);\draw[mainblue,line width=1pt,line cap=round,line join=round](0,1)--(1,1)--(1,0) (0,0)--(1,1);}}
+\newcommand{\clawBL}{\tikz[baseline=-0.55ex,x=1.35em,y=1.35em]{\draw[ink,line width=.45pt](-.18,0)--(-.18,1) (1.18,0)--(1.18,1);\draw[mainblue,line width=1pt,line cap=round,line join=round](0,1)--(0,0)--(1,0) (0,0)--(1,1);}}
+\newcommand{\clawBR}{\tikz[baseline=-0.55ex,x=1.35em,y=1.35em]{\draw[ink,line width=.45pt](-.18,0)--(-.18,1) (1.18,0)--(1.18,1);\draw[mainblue,line width=1pt,line cap=round,line join=round](0,0)--(1,0)--(1,1) (0,1)--(1,0);}}
+\newcommand{\diagMain}{\tikz[baseline=-0.55ex,x=1.35em,y=1.35em]{\draw[ink,line width=.45pt](-.18,0)--(-.18,1) (1.18,0)--(1.18,1);\draw[mainblue,line width=1pt,line cap=round](0,1)--(1,0);}}
+\newcommand{\diagAnti}{\tikz[baseline=-0.55ex,x=1.35em,y=1.35em]{\draw[ink,line width=.45pt](-.18,0)--(-.18,1) (1.18,0)--(1.18,1);\draw[mainblue,line width=1pt,line cap=round](0,0)--(1,1);}}
+\newcommand{\xShape}{\tikz[baseline=-0.55ex,x=1.35em,y=1.35em]{\draw[ink,line width=.45pt](-.18,0)--(-.18,1) (1.18,0)--(1.18,1);\draw[mainblue,line width=1pt,line cap=round](0,0)--(1,1) (0,1)--(1,0);}}
+\newcommand{\denseShape}{\tikz[baseline=-0.55ex,x=1.35em,y=1.35em]{\draw[ink,line width=.45pt](-.18,0)--(-.18,1) (1.18,0)--(1.18,1);\foreach \x in {0,.333,.666,1}{\foreach \y in {0,.333,.666,1}{\fill[mainblue] (\x,\y) circle (.035);}}}}
+\newcommand{\upperLowerShape}{\tikz[baseline=-0.55ex,x=1.55em,y=1.55em]{\draw[ink,line width=.45pt](-.18,0)--(-.18,1) (1.18,0)--(1.18,1);\fill[mainblue!16](0,1)--(1,1)--(1,0)--cycle;\fill[warm!12](0,1)--(0,0)--(1,0)--cycle;\draw[mainblue,line width=.75pt](0,1)--(1,0);\node[font=\tiny,text=mainblue]at(.70,.72){$b$};\node[font=\tiny,text=warm]at(.30,.28){$c$};\node[font=\tiny,fill=white,inner sep=.25pt]at(.50,.50){$a$};}}
+\newcommand{\triBand}{\tikz[baseline=-0.55ex,x=1.35em,y=1.35em]{\draw[ink,line width=.45pt](-.18,0)--(-.18,1) (1.18,0)--(1.18,1);\begin{scope}\clip(0,0)rectangle(1,1);\draw[mainblue,line width=.75pt,line cap=round](-.22,1)--(.78,0) (0,1)--(1,0) (.22,1)--(1.22,0);\end{scope}}}
+\newcommand{\blockDiag}{\tikz[baseline=-0.55ex,x=1.35em,y=1.35em]{\draw[ink,line width=.45pt](-.18,0)--(-.18,1) (1.18,0)--(1.18,1);\fill[mainblue!20](0,.52)rectangle(.48,1);\fill[mainblue!20](.52,0)rectangle(1,.48);\draw[mainblue,line width=.65pt](0,0)rectangle(1,1) (0,.5)--(1,.5) (.5,0)--(.5,1);\node[font=\tiny,text=deepblue]at(.25,.75){$A$};\node[font=\tiny,text=deepblue]at(.75,.25){$B$};}}
+\newcommand{\blockUpper}{\tikz[baseline=-0.55ex,x=1.35em,y=1.35em]{\draw[ink,line width=.45pt](-.18,0)--(-.18,1) (1.18,0)--(1.18,1);\fill[mainblue!20](0,.52)rectangle(1,1);\fill[mainblue!20](.52,0)rectangle(1,.48);\draw[mainblue,line width=.65pt](0,0)rectangle(1,1) (0,.5)--(1,.5) (.5,0)--(.5,1);\node[font=\tiny,text=deepblue]at(.25,.75){$A$};\node[font=\tiny,text=deepblue]at(.75,.75){$C$};\node[font=\tiny,text=deepblue]at(.75,.25){$B$};\node[font=\tiny,text=gray]at(.25,.25){$0$};}}
+
+\begin{document}
+
+\section{典型形状行列式}
+
+\subsection{例1.2：爪形行列式}
+\begin{problembox}[题目]
+计算
+\[
+D=\dmat{1&1&1&1\\1&2&0&0\\1&0&3&0\\1&0&0&4}.
+\]
+\end{problembox}
+
+\textbf{识形：}除第1行、第1列和主对角线外，其余元素均为零，是典型的\key{爪形行列式}。
+
+从第2、3、4行分别提出 $2,3,4$，得
+\begin{align*}
+D
+&=24\dmat{1&1&1&1\\\frac12&1&0&0\\\frac13&0&1&0\\\frac14&0&0&1} =24\left(1-\frac12-\frac13-\frac14\right)=-2.
+\end{align*}
+
+\begin{summarybox}[分析与方法总结]
+爪形行列式的统一策略是：利用行、列倍加，使“爪”以外的元素变为零，再按稀疏行或稀疏列展开。上式实质上化成了
+\[
+\dmat{a&b_2&b_3&\cdots&b_n\\c_2&d_2&0&\cdots&0\\c_3&0&d_3&\cdots&0\\\vdots&\vdots&\vdots&\ddots&\vdots\\c_n&0&0&\cdots&d_n}
+=\left(\prod_{i=2}^n d_i\right)
+\left(a-\sum_{i=2}^n\frac{b_i c_i}{d_i}\right),
+\]
+其中 $d_i\ne0$。这是“先提出对角元，再消爪”的公式化表达。
+\end{summarybox}
+
+\subsection{例1.3：行元素差别不大，化为稀疏型}
+\begin{problembox}[题目]
+计算
+\[
+D=\dmat{
+1&-1&1&x-1\\
+1&-1&x+1&-1\\
+1&x-1&1&-1\\
+x+1&-1&1&-1}.
+\]
+\end{problembox}
+
+依次作 $R_i\leftarrow R_i-R_1\ (i=2,3,4)$：
+\[
+D=\dmat{1&-1&1&x-1\\0&0&x&-x\\0&x&0&-x\\x&0&0&-x}.
+\]
+再作 $C_4\leftarrow C_1+C_2+C_3+C_4$：
+\[
+D=\dmat{1&-1&1&x\\0&0&x&0\\0&x&0&0\\x&0&0&0}
+=(-1)^{\frac{4(4-1)}2}x^4=x^4.
+\]
+
+\begin{summarybox}[分析与方法总结]
+当各行元素差别不大，且第1列大部分相同时：
+\begin{enumerate}
+  \item 把第1行的 $(-1)$ 倍加到其余各行，制造大量零；
+  \item 对整理后的行列式继续作列倍加，使其化为只有一条对角线或副对角线非零的“$12+1$”基本形。
+\end{enumerate}
+只有副对角线非零时，
+\[
+\dmat{0&\cdots&0&a_1\\0&\cdots&a_2&0\\\vdots&\reflectbox{$\ddots$}&\vdots&\vdots\\a_n&0&\cdots&0}
+=(-1)^{\frac{n(n-1)}2}\prod_{i=1}^{n}a_i.
+\]
+\end{summarybox}
+
+\subsection{例1.4：等行和的字母抽象型}
+\begin{problembox}[题目]
+计算 $n$ 阶行列式
+\[
+D_n=\dmat{
+a&b&b&\cdots&b\\
+b&a&b&\cdots&b\\
+b&b&a&\cdots&b\\
+\vdots&\vdots&\vdots&\ddots&\vdots\\
+b&b&b&\cdots&a}.
+\]
+\end{problembox}
+
+把其余各列加到第1列，提出公共因子 $a+(n-1)b$；再对第 $2$ 至第 $n$ 列作 $C_j\leftarrow C_j-bC_1$，得到上三角形：
+\begin{align*}
+D_n
+&=[a+(n-1)b]
+\dmat{1&b&b&\cdots&b\\0&a-b&0&\cdots&0\\0&0&a-b&\cdots&0\\\vdots&\vdots&\vdots&\ddots&\vdots\\0&0&0&\cdots&a-b}
+=\boxed{[a+(n-1)b](a-b)^{n-1}}.
+\end{align*}
+
+\begin{summarybox}[必背变式]
+\begin{align*}
+\dmat{0&1&\cdots&1\\1&0&\cdots&1\\\vdots&\vdots&\ddots&\vdots\\1&1&\cdots&0}
+&=(n-1)(-1)^{n-1},\\[2mm]
+\dmat{2&1&\cdots&1\\1&2&\cdots&1\\\vdots&\vdots&\ddots&\vdots\\1&1&\cdots&2}
+&=n+1,\\[2mm]
+\dmat{x&b&\cdots&b\\b&x&\cdots&b\\\vdots&\vdots&\ddots&\vdots\\b&b&\cdots&x}
+&=[x+(n-1)b](x-b)^{n-1}.
+\end{align*}
+作为 $x$ 的多项式，其根为 $x=b$（$n-1$ 重）及 $x=(1-n)b$。
+
+若主对角线为 $\lambda-a$、其余为 $b$，则 $D_n=[\lambda-a+(n-1)b](\lambda-a-b)^{n-1}$，根为 $\lambda=a+b$（$n-1$ 重）及 $\lambda=a-(n-1)b$。
+\end{summarybox}
+
+\begin{summarybox}[更一般的“上 $b$、下 $c$”型]
+\[
+\dmat{a&b&\cdots&b\\c&a&\cdots&b\\\vdots&\vdots&\ddots&\vdots\\c&c&\cdots&a}
+=
+\begin{cases}
+[a+(n-1)b](a-b)^{n-1},&b=c,\\[1mm]
+\dfrac{b(a-c)^n-c(a-b)^n}{b-c},&b\ne c.
+\end{cases}
+\]
+规律型 $n$ 阶行列式应先观察元素分布、行和与列和，再总结公式；公式要会用，推导不必死背。
+\end{summarybox}
+
+\subsection{例1.5：X 型行列式}
+\begin{problembox}[题目]
+计算
+\[
+D_4=\dmat{a_1&0&0&b_1\\0&a_2&b_2&0\\0&b_3&a_3&0\\b_4&0&0&a_4}.
+\]
+\end{problembox}
+
+同时交换第2、4行与第2、4列（总符号不变），可化成分块对角形：
+\[
+D_4=
+\dmat{a_1&b_1&0&0\\b_4&a_4&0&0\\0&0&a_3&b_3\\0&0&b_2&a_2}
+=\dmat{a_1&b_1\\b_4&a_4}\dmat{a_3&b_3\\b_2&a_2}.
+\]
+故 $\boxed{D_4=(a_1a_4-b_1b_4)(a_2a_3-b_2b_3)}$。
+
+\begin{warningbox}
+不能把它误当成两个二阶行列式后漏项。正确展开共有四项：$a_1a_2a_3a_4+b_1b_2b_3b_4-a_1a_4b_2b_3-a_2a_3b_1b_4$。副对角线元素的乘积项在四阶时取正号。
+\end{warningbox}
+
+\begin{summarybox}[X 型总公式]
+若 $2k$ 阶 X 型行列式主、副对角线分别为 $a_i,b_i$，则 $D_{2k}=\prod_{i=1}^{k}\bigl(a_i a_{2k+1-i}-b_i b_{2k+1-i}\bigr)$。特别地，主对角线全为 $a$、副对角线全为 $b$ 时，$D_{2k}=(a^2-b^2)^k$。
+若阶数为奇数，中心交点只算一次：先取中心元，再处理外围的二阶块。
+\end{summarybox}
+
+\subsection{例1.7：宽对角/三对角型与递推法}
+\begin{problembox}[题目]
+\[
+D_4=\dmat{1-a&a&0&0\\-1&1-a&a&0\\0&-1&1-a&a\\0&0&-1&1-a}.
+\]
+求 $D_4$。选项中含 $\text{(D)}\quad a^4-a^3+a^2-a+1$。
+\end{problembox}
+
+本题是三对角行列式。沿第一列展开，可得递推 $D_n=(1-a)D_{n-1}+aD_{n-2}$，其中 $D_0=1,\ D_1=1-a$。也可利用题图中的行列变换逐阶降阶，得到更直观的 $D_n=(-a)^n+D_{n-1}$。因此 $D_4=a^4-a^3+a^2-a+1$，选择 \textbf{(D)}。进一步，
+\[
+D_n=1-a+a^2-\cdots+(-a)^n=
+\begin{cases}
+\dfrac{1-(-a)^{n+1}}{1+a},&a\ne-1,\\[2mm]
+n+1,&a=-1.
+\end{cases}
+\]
+
+\begin{summarybox}[注：常系数三对角公式]
+设
+\[
+T_n=\dmat{k&b&0&\cdots&0\\c&k&b&\ddots&\vdots\\0&c&k&\ddots&0\\\vdots&\ddots&\ddots&\ddots&b\\0&\cdots&0&c&k},\qquad
+\Delta=k^2-4bc.
+\]
+则
+\[
+T_n=
+\begin{cases}
+(n+1)\left(\dfrac{k}{2}\right)^n,&\Delta=0,\\[2mm]
+\dfrac{(k+\sqrt\Delta)^{n+1}-(k-\sqrt\Delta)^{n+1}}{2^{n+1}\sqrt\Delta},&\Delta\ne0.
+\end{cases}
+\]
+其本质是递推 $T_n=kT_{n-1}-bc\,T_{n-2}$。递推法与数学归纳法方向相反：递推从高阶降到低阶，归纳从低阶推到高阶。
+\end{summarybox}
+
+\clearpage
+\section{综合题}
+
+\subsection{\texorpdfstring{\tagstar}{星标} 例1.9：含参数方程出现二重根}
+\begin{problembox}[星标题]
+设关于 $\lambda$ 的方程
+\[
+\dmat{\lambda-1&-2&3\\1&\lambda-4&3\\-1&a&\lambda-5}=0
+\]
+有二重根，求参数 $a$。
+\end{problembox}
+
+先把相同元素消成零。作 $R_1\leftarrow R_1-R_2$，再作 $C_2\leftarrow C_1+C_2$，得
+\begin{align*}
+f(\lambda)
+&=\dmat{\lambda-2&0&0\\1&\lambda-3&3\\-1&a-1&\lambda-5}\\
+&=(\lambda-2)\bigl[(\lambda-3)(\lambda-5)-3(a-1)\bigr]\\
+&=(\lambda-2)(\lambda^2-8\lambda+18-3a).
+\end{align*}
+
+二重根有两种来源：
+\begin{enumerate}
+  \item $\lambda=2$ 同时也是二次因子的根：$4-16+18-3a=0$，得 $a=2$；此时 $f=(\lambda-2)^2(\lambda-6)$。
+  \item $\lambda=2$ 不是二重根，而二次因子自身有二重根：$\Delta=(-8)^2-4(18-3a)=0$，得 $a=\dfrac23$；此时 $f=(\lambda-2)(\lambda-4)^2$。
+\end{enumerate}
+故 $\boxed{a=2\quad\text{或}\quad a=\frac23}$。
+
+\begin{summarybox}[分析]
+含 $\lambda$ 的行列式是关于 $\lambda$ 的多项式。三阶无规律题优先寻找相同或相反元素，通过行、列倍加制造零，再按稀疏行列展开。判断重根时必须同时检查“两个因子有公共根”和“某个因子自身判别式为零”。
+\end{summarybox}
+
+\subsection{\texorpdfstring{\tagstar}{星标} 例1.11：列向量组、矩阵乘积与行列式}
+\begin{problembox}[星标题]
+设 $\alpha_1,\alpha_2,\alpha_3$ 均为三维列向量，$A=[\alpha_1,\alpha_2,\alpha_3]$，
+\[
+B=[\alpha_1-\alpha_2+2\alpha_3,
+2\alpha_1+3\alpha_2-5\alpha_3,
+\alpha_1+2\alpha_2-\alpha_3].
+\]
+若 $|A|=2$，求 $|B-A|$。
+\end{problembox}
+
+矩阵相减按对应列相减：
+\[
+B-A=[-\alpha_2+2\alpha_3,
+2\alpha_1+2\alpha_2-5\alpha_3,
+\alpha_1+2\alpha_2-2\alpha_3].
+\]
+把每一列按基底 $[\alpha_1,\alpha_2,\alpha_3]$ 写成系数列：
+\[
+B-A=[\alpha_1,\alpha_2,\alpha_3]
+\mat{0&2&1\\-1&2&2\\2&-5&-2}=AC.
+\]
+系数矩阵
+\[
+|C|=\dmat{0&2&1\\-1&2&2\\2&-5&-2}=5.
+\]
+由 $|AC|=|A||C|$，得 $\boxed{|B-A|=2\times5=10}$。
+
+\begin{summarybox}[补充：把线性组合写成矩阵乘积]
+\[
+x_1\alpha_1+x_2\alpha_2+x_3\alpha_3
+=[\alpha_1,\alpha_2,\alpha_3]
+\mat{x_1\\x_2\\x_3}.
+\]
+向量组是一个列分块矩阵；把每个新列向量的系数竖着放，就得到右侧系数矩阵。矩阵相减是对应元素（或对应列）相减；行列式相加减则只允许对应的一行或一列不同。
+\end{summarybox}
+
+\begin{summarybox}[补充：分块矩阵]
+分块矩阵应把每一块当作一个“元素”看待，并严格保持块的尺寸相容。例如 $\begin{bmatrix}A&B\\C&D\end{bmatrix}$ 是 $2\times2$ 的块矩阵。若化成块对角或块三角形，在可交换或相容条件下，计算可转化为各对角块的乘积；例1.5就是先重排成两个 $2\times2$ 对角块。
+\end{summarybox}
+
+\subsection{典型题 例1.13：\texorpdfstring{$AB=0$}{AB=0}、齐次方程与可逆性}
+\begin{problembox}[典型题]
+已知三阶矩阵 $B\ne O$，且 $B$ 的每一个列向量都是方程组
+\[
+\begin{cases}
+x_1+2x_2-2x_3=0,\\
+2x_1-x_2+\lambda x_3=0,\\
+3x_1+x_2-x_3=0
+\end{cases}
+\]
+的解。
+
+(1) 求 $\lambda$；\qquad (2) 证明 $|B|=0$。
+\end{problembox}
+
+记
+\[
+A=\mat{1&2&-2\\2&-1&\lambda\\3&1&-1},\qquad
+B=[\beta_1,\beta_2,\beta_3].
+\]
+由于每个 $\beta_i$ 都是 $Ax=0$ 的解，故 $A\beta_i=0\ (i=1,2,3)$，于是 $AB=[A\beta_1,A\beta_2,A\beta_3]=O$。
+
+因为 $B\ne O$，至少有一个列向量是非零解，所以齐次方程 $Ax=0$ 有非零解，必有 $|A|=0$。计算
+\begin{align*}
+|A|
+&=\dmat{1&2&-2\\2&-1&\lambda\\3&1&-1}
+=\dmat{1&2&0\\2&-1&\lambda-1\\3&1&0}
+=(-1)^{2+3}(\lambda-1)\dmat{1&2\\3&1}
+=5(\lambda-1).
+\end{align*}
+故 $\boxed{\lambda=1}$。
+
+再证 $|B|=0$。若反设 $|B|\ne0$，则 $B$ 可逆。在 $AB=O$ 两边右乘 $B^{-1}$，有 $A=ABB^{-1}=O$；但此处 $A=\mat{1&2&-2\\2&-1&1\\3&1&-1}\ne O$，矛盾。因此 $\boxed{|B|=0}$。
+
+\begin{summarybox}[补充与必背结论]
+\begin{itemize}
+  \item 解的定义：把向量代入方程（组）后使等式恒成立，该向量就是解。
+  \item $AB=O$ 表示 $B$ 的每一个列向量都是齐次方程 $Ax=0$ 的解。
+  \item $AB=O$ 且 $|B|\ne0\Rightarrow A=O$；同理，若 $|A|\ne0\Rightarrow B=O$。
+  \item $|AB|=|A||B|=0$ 只能推出 $|A|=0$ 或 $|B|=0$，不能单独判定哪一个为零；本题需用反证法排除 $|B|\ne0$。
+\end{itemize}
+\end{summarybox}
+
+\clearpage
+\section{行列式形状速查}
+
+\begin{shapebox}[1. $n$ 阶爪形：四种示意图与通式]
+\begin{center}
+\textbf{四种爪形行列式：}\quad
+$\longrightarrow$\quad
+\clawTL\quad，\quad\clawTR\quad，\quad\clawBL\quad，\quad\clawBR
+\end{center}
+从左到右依次为左上、右上、左下、右下爪。三条蓝线表示\textbf{一条边行、一条边列和由交点伸出的对角线}；其余位置均为零。以左上爪为标准形：
+\[
+D_n=\dmat{a&b_2&b_3&\cdots&b_n\\c_2&d_2&0&\cdots&0\\c_3&0&d_3&\cdots&0\\\vdots&\vdots&\vdots&\ddots&\vdots\\c_n&0&0&\cdots&d_n}
+=\left(\prod_{i=2}^{n}d_i\right)\left(a-\sum_{i=2}^{n}\frac{b_i c_i}{d_i}\right),\quad d_i\ne0.
+\]
+其余三种先倒排行或列化为标准形：倒排一次的符号为 $(-1)^{\frac{n(n-1)}2}$；同时倒排行、列时行列式值不变。
+\end{shapebox}
+
+\begin{shapebox}[2. $n$ 阶更一般的“上 $b$ 下 $c$”型]
+\begin{center}
+\textbf{形状：}\quad\upperLowerShape\quad 主对角线元素全为 $a$，主对角线上方元素全为 $b$，下方元素全为 $c$
+\end{center}
+\[
+D_n=
+\dmat{
+a&b&b&\cdots&b\\
+c&a&b&\cdots&b\\
+c&c&a&\cdots&b\\
+\vdots&\vdots&\vdots&\ddots&\vdots\\
+c&c&c&\cdots&a}
+=
+\begin{cases}
+[a+(n-1)b](a-b)^{n-1},&b=c,\\[2mm]
+\dfrac{b(a-c)^n-c(a-b)^n}{b-c},&b\ne c.
+\end{cases}
+\]
+\textbf{方法：}先观察元素分布及行和、列和，再通过行列变换或递推总结公式。公式要会用，推导不必死背。$b=c$ 时退化为等行和型。
+\end{shapebox}
+
+\begin{shapebox}[3. X 型：$2m$ 阶与 $(2m+1)$ 阶]
+\begin{center}
+\textbf{形状：}\quad\xShape\quad 主对角线与副对角线组成 X
+\end{center}
+主对角线元素为 $a_i$，副对角线元素为 $b_i$。对称重排行、列后化成二阶块：
+\par\noindent 偶数阶：\(\displaystyle D_{2m}=\prod_{i=1}^{m}\bigl(a_i a_{2m+1-i}-b_i b_{2m+1-i}\bigr)\)；
+\par\noindent 奇数阶：\(\displaystyle D_{2m+1}=c\prod_{i=1}^{m}\bigl(a_i a_{2m+2-i}-b_i b_{2m+2-i}\bigr)\)，其中 $c$ 是中心交点元素。
+\end{shapebox}
+
+\pagebreak
+\begin{shapebox}[4. $n$ 阶常系数三对角型]
+\begin{center}
+\textbf{形状：}\quad\triBand\quad 主对角线及其上下相邻两条对角线组成斜带
+\end{center}
+\[
+T_n=\dmat{k&b&0&\cdots&0\\c&k&b&\ddots&\vdots\\0&c&k&\ddots&0\\\vdots&\ddots&\ddots&\ddots&b\\0&\cdots&0&c&k},
+\quad T_n=kT_{n-1}-bc\,T_{n-2},\quad T_0=1,\ T_1=k.
+\]
+令 $\Delta=k^2-4bc$，则
+\[
+T_n=\begin{cases}
+(n+1)\left(\dfrac{k}{2}\right)^n,&\Delta=0,\\[2mm]
+\dfrac{(k+\sqrt\Delta)^{n+1}-(k-\sqrt\Delta)^{n+1}}{2^{n+1}\sqrt\Delta},&\Delta\ne0.
+\end{cases}
+\]
+\end{shapebox}
+
+\begin{shapebox}[5. $(p+q)$ 阶分块对角型与分块三角型]
+\begin{center}
+\textbf{形状：}\quad\blockDiag\quad 分块对角型\qquad\blockUpper\quad 分块上三角型
+\end{center}
+设 $A$ 为 $p\times p$ 方阵，$B$ 为 $q\times q$ 方阵，零块与相邻块尺寸相容，则
+\[
+\begin{vmatrix}
+A&O\\O&B
+\end{vmatrix}=|A|\,|B|,
+\qquad
+\begin{vmatrix}
+A&C\\O&B
+\end{vmatrix}=|A|\,|B|.
+\]
+\textbf{动作：}先检查块尺寸是否相容，再把每个块视为一个整体。X 型常通过同步重排行、列化到这种形状。
+\end{shapebox}
+
+\clearpage
+\section{克拉默法则}
+\begingroup
+\small
+\setlength{\abovedisplayskip}{3pt}
+\setlength{\belowdisplayskip}{3pt}
+\setlength{\abovedisplayshortskip}{2pt}
+\setlength{\belowdisplayshortskip}{2pt}
+
+\begin{summarybox}[一、非齐次线性方程组]
+对 $n$ 个方程、$n$ 个未知数的非齐次线性方程组
+\[
+\begin{cases}
+a_{11}x_1+a_{12}x_2+\cdots+a_{1n}x_n=b_1,\\
+a_{21}x_1+a_{22}x_2+\cdots+a_{2n}x_n=b_2,\\
+\hfill\cdots\cdots\hfill\\
+a_{n1}x_1+a_{n2}x_2+\cdots+a_{nn}x_n=b_n,
+\end{cases}
+\]
+其中自由项 $b_1,b_2,\ldots,b_n$ 不全为零。
+系数行列式
+\[
+D=\dmat{a_{11}&a_{12}&\cdots&a_{1n}\\a_{21}&a_{22}&\cdots&a_{2n}\\\vdots&\vdots&\ddots&\vdots\\a_{n1}&a_{n2}&\cdots&a_{nn}}.
+\]
+若 $D\ne0$，则方程组有唯一解 $\boxed{x_i=\dfrac{D_i}{D}}\ (i=1,2,\ldots,n)$，其中 $D_i$ 是用常数列 $(b_1,b_2,\ldots,b_n)^{\mathsf T}$ 替换 $D$ 的第 $i$ 列所得的行列式。若 $D=0$，非齐次方程组无解或有无穷多解，不能使用克拉默法则。
+\end{summarybox}
+
+\begin{problembox}[示例]
+\[
+\begin{cases}
+x_1-2x_2+x_3=1,\\
+x_1+0x_2+0x_3=2,\\
+0x_1+x_2+0x_3=5.
+\end{cases}
+\qquad
+D=\dmat{1&-2&1\\1&0&0\\0&1&0}=1\ne0.
+\]
+故有唯一解，且
+\[
+x_1=\frac{\dmat{1&-2&1\\2&0&0\\5&1&0}}{1}=2,\quad
+x_2=\frac{\dmat{1&1&1\\1&2&0\\0&5&0}}{1}=5,\quad
+x_3=\frac{\dmat{1&-2&1\\1&0&2\\0&1&5}}{1}=9.
+\]
+因此 $(x_1,x_2,x_3)=(2,5,9)$。
+\end{problembox}
+
+\begin{summarybox}[二、齐次线性方程组]
+对 $n$ 个方程、$n$ 个未知数的齐次线性方程组
+\[
+\begin{cases}
+a_{11}x_1+a_{12}x_2+\cdots+a_{1n}x_n=0,\\
+\hfill\cdots\cdots\hfill\\
+a_{n1}x_1+a_{n2}x_2+\cdots+a_{nn}x_n=0,
+\end{cases}
+\]
+即所有自由项均为零。充分必要关系为：
+\par\noindent $\boxed{D\ne0\Longleftrightarrow\text{齐次方程组只有零解}}$，\qquad
+$\boxed{D=0\Longleftrightarrow\text{齐次方程组有非零解}}$。
+\par\noindent 当 $D\ne0$ 时，由克拉默法则 $x_i=D_i/D$；齐次方程组的 $D_i$ 第 $i$ 列全为零，所以 $D_i=0$，从而 $x_i=0$。反过来，若齐次方程组有非零解，则必有 $D=0$。
+\end{summarybox}
+
+\begin{summarybox}[注]
+以上两个关于齐次方程组的结论反过来也成立，因此都是充分必要关系。线性代数题常把行列式、矩阵与方程组互相转化；遇到相关问题时，应先判断 $D$ 是否为零，再选择克拉默法则或非零解判定。
+\end{summarybox}
+\endgroup
+
+\end{document}
