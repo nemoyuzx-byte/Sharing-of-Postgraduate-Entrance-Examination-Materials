@@ -1,0 +1,201 @@
+% !TEX program = xelatex
+\documentclass[UTF8,10pt,fontset=mac]{ctexart}
+
+\usepackage[
+  paperwidth=182mm,
+  paperheight=257mm,
+  top=11mm,
+  bottom=12mm,
+  left=14mm,
+  right=14mm,
+  footskip=6mm
+]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage[normalem]{ulem}
+
+\setmainfont{STIX Two Text}[BoldFont={STIX Two Text Bold}]
+\setCJKmainfont{STSong}[BoldFont={Hiragino Sans GB W6}]
+
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0pt}
+\linespread{1.05}
+\setlist[enumerate]{
+  label=\textbf{\arabic*.},
+  leftmargin=2.2em,
+  labelsep=0.55em,
+  itemsep=2.5pt,
+  topsep=2pt,
+  parsep=0pt
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+\newcommand{\defitem}[2]{\item \textbf{#1}\nopagebreak\par #2}
+
+\begin{document}
+\fontsize{9}{11.2}\selectfont
+
+\begin{center}
+  {\bfseries\Large 图的基本概念与定义}
+\end{center}
+\vspace{-3pt}
+\hrule
+\vspace{5pt}
+
+\noindent\textbf{图的定义}\par
+图 $G$ 由顶点集 $V$ 和边集 $E$ 组成，记为 $G=(V,E)$。其中，$V(G)$ 表示图 $G$ 中顶点的有限非空集合；$E(G)$ 表示图 $G$ 中顶点之间的关系（边）的集合。若 $V=\{v_1,v_2,\ldots,v_n\}$，则用 $|V|$ 表示图 $G$ 中顶点的个数，用 $|E|$ 表示图 $G$ 中边的条数。
+
+\begin{enumerate}
+
+\defitem{有向图}{
+若 $E$ 是有向边的有限集合，则图 $G$ 为有向图。有向边是顶点的有序对，记为 $\langle v,w\rangle$，其中 $v$ 是边的起点，$w$ 是边的终点；$\langle v,w\rangle$ 称为从 $v$ 到 $w$ 的有向边，也称 $v$ 邻接到 $w$。
+}
+
+\defitem{无向图}{
+若 $E$ 是无向边（简称边）的有限集合，则图 $G$ 为无向图。边是顶点的无序对，记为 $(v,w)$ 或 $(w,v)$。可以说 $v$ 和 $w$ 互为邻接点；边 $(v,w)$ 依附于 $v$ 和 $w$，或称边 $(v,w)$ 和 $v,w$ 相关联。
+}
+
+\defitem{简单图、多重图}{
+若图 $G$ 中不存在重复边，也不存在顶点到自身的边，则称 $G$ 为简单图。若图 $G$ 中某两个顶点之间的边数大于 $1$，又允许顶点通过一条边和自身相关联，则称 $G$ 为多重图。
+}
+
+\defitem{顶点的度、入度和出度}{
+在无向图中，顶点 $v$ 的度是依附于顶点 $v$ 的边的条数，记为 $TD(v)$。在有向图中，顶点 $v$ 的入度是以顶点 $v$ 为终点的有向边的数目，记为 $ID(v)$；出度是以顶点 $v$ 为起点的有向边的数目，记为 $OD(v)$。顶点 $v$ 的度等于其入度与出度之和，即 $TD(v)=ID(v)+OD(v)$。
+}
+
+\defitem{路径、路径长度和回路}{
+顶点 $v_p$ 到顶点 $v_q$ 之间的一条路径，是指顶点序列 $v_p,v_{i_1},v_{i_2},\ldots,v_{i_m},v_q$，其中相邻顶点之间都有边相连。路径也可理解为由顶点以及相邻顶点序对所关联的边依次形成的序列。路径上的边的数目称为路径长度。第一个顶点和最后一个顶点相同的路径称为回路或环。
+}
+
+\defitem{简单路径、简单回路}{
+在路径序列中，顶点不重复出现的路径称为简单路径。除第一个顶点和最后一个顶点外，其余顶点不重复出现的回路称为简单回路。
+}
+
+\defitem{距离}{
+从顶点 $u$ 出发到顶点 $v$ 的最短路径若存在，则此路径的长度称为从 $u$ 到 $v$ 的距离。若从 $u$ 到 $v$ 根本不存在路径，则记该距离为无穷（$\infty$）。
+}
+
+\defitem{子图}{
+设有两个图 $G=(V,E)$ 和 $G'=(V',E')$。若 $V'$ 是 $V$ 的子集，且 $E'$ 是 $E$ 的子集，则称 $G'$ 是 $G$ 的子图。若有满足 $V(G')=V(G)$ 的子图 $G'$，则称其为 $G$ 的生成子图。
+}
+
+\defitem{连通、连通图和连通分量}{
+在无向图中，若从顶点 $v$ 到顶点 $w$ 有路径存在，则称 $v$ 和 $w$ 是连通的。若图 $G$ 中任意两个顶点都是连通的，则称图 $G$ 为连通图，否则称为非连通图。无向图中的极大连通子图称为连通分量。
+}
+
+\defitem{强连通图、强连通分量}{
+在有向图中，若有一对顶点 $v$ 和 $w$，从 $v$ 到 $w$ 和从 $w$ 到 $v$ 之间都有路径，则称这两个顶点是强连通的。若图中任意一对顶点都是强连通的，则称此图为强连通图。有向图中的极大强连通子图称为有向图的强连通分量。
+}
+
+\defitem{生成树、生成森林}{
+连通图的生成树是包含图中全部顶点的一个极小连通子图。在非连通图中，各连通分量的生成树构成了非连通图的生成森林。
+}
+
+\defitem{边的权、网和带权路径长度}{
+在一个图中，每条边都可以标上具有某种含义的数值，该数值称为该边的权值。边上带有权值的图称为带权图，也称网。路径上所有边的权值之和，称为该路径的带权路径长度。
+}
+
+\defitem{完全图（也称简单完全图）}{
+对于无向图，任意两个顶点之间都存在边的无向图称为完全图。对于有向图，任意两个顶点之间都存在方向相反的两条有向边的有向图称为有向完全图。
+}
+
+\defitem{稠密图、稀疏图}{
+边数很少的图称为稀疏图，反之称为稠密图。稀疏和稠密本身是模糊的概念，稀疏图和稠密图常常是相对而言的。
+}
+
+\defitem{有向树}{
+一个顶点的入度为 $0$、其余顶点的入度均为 $1$ 的有向图，称为有向树。
+}
+
+\end{enumerate}
+
+\newpage
+
+\begin{center}
+  {\bfseries\Large 书上标注与常用推论}
+\end{center}
+\vspace{-3pt}
+\hrule
+\vspace{5pt}
+
+\noindent\textbf{说明：}带下划线的内容来自照片中可辨认的手写标注；未加下划线的内容为补充推论。
+
+\vspace{3pt}
+\noindent\textbf{1--2. 有向图、无向图}
+\begin{itemize}[leftmargin=1.8em,itemsep=1.2pt,topsep=1pt]
+  \item \uline{有向边用尖括号表示，如 $\langle v,w\rangle$；无向边用圆括号表示，如 $(v,w)$。}
+\end{itemize}
+
+\noindent\textbf{3. 简单图、多重图}
+\begin{itemize}[leftmargin=1.8em,itemsep=1.2pt,topsep=1pt]
+  \item 无向简单图最多有 $\dfrac{n(n-1)}{2}$ 条边；有向简单图最多有 $n(n-1)$ 条有向边。
+\end{itemize}
+
+\noindent\textbf{4. 顶点的度、入度和出度}
+\begin{itemize}[leftmargin=1.8em,itemsep=1.2pt,topsep=1pt]
+  \item 无向图满足 $\displaystyle\sum_{v\in V}TD(v)=2|E|$，故奇度顶点的个数一定为偶数。
+  \item 有向图满足 $\displaystyle\sum_{v\in V}ID(v)=\sum_{v\in V}OD(v)=|E|$；简单图中 $ID(v),OD(v)\le n-1$。
+\end{itemize}
+
+\noindent\textbf{5--7. 路径、回路与距离}
+\begin{itemize}[leftmargin=1.8em,itemsep=1.2pt,topsep=1pt]
+  \item 两个顶点间若存在路径，则一定存在简单路径；最短路径一定是简单路径。
+  \item 含 $n$ 个顶点的无向图若边数大于 $n-1$，则图中一定存在回路；反过来不成立。
+\end{itemize}
+
+\noindent\textbf{8. 子图}
+\begin{itemize}[leftmargin=1.8em,itemsep=1.2pt,topsep=1pt]
+  \item \uline{生成子图包含原图中的全部顶点，即 $V(G')=V(G)$。}
+  \item 生成子图只要求顶点集相同；选定顶点集并保留其间全部原有边，得到导出子图。
+  \item \textbf{注意：}并非 $V$ 和 $E$ 的任意子集都能构成原图的子图；若一条边被选入子图，则该边所关联的顶点也必须被选入。
+\end{itemize}
+
+\noindent\textbf{9. 连通、连通图和连通分量}
+\begin{itemize}[leftmargin=1.8em,itemsep=1.2pt,topsep=1pt]
+  \item \uline{含 $n$ 个顶点的连通无向图至少有 $n-1$ 条边。}
+  \item \uline{含 $n$ 个顶点的非连通无向简单图至多有 $\dfrac{(n-1)(n-2)}{2}$ 条边；再多一条边就一定连通。}
+  \item 各连通分量之间没有边；若共有 $c$ 个连通分量，则其生成森林有 $n-c$ 条边。
+\end{itemize}
+
+\noindent\textbf{10. 强连通图、强连通分量}
+\begin{itemize}[leftmargin=1.8em,itemsep=1.2pt,topsep=1pt]
+  \item \uline{含 $n\,(n>1)$ 个顶点的强连通简单有向图至少有 $n$ 条有向边。}
+  \item 强连通有向图中，每个顶点的入度和出度都至少为 $1$；将各强连通分量缩成一点后得到有向无环图。
+  \item 若某顶点（或一组顶点）与外部相连的有向边只有入边或只有出边，则其不可能与外部顶点互相可达；单个顶点因此独自构成一个强连通分量。
+  \item 若一组顶点中任意两个顶点之间分别存在方向相反的两条路径，即彼此互相可达，且该组是满足此性质的极大顶点集，则该组构成一个强连通分量。
+\end{itemize}
+
+\noindent\textbf{11. 生成树、生成森林}
+\begin{itemize}[leftmargin=1.8em,itemsep=1.2pt,topsep=1pt]
+  \item 含 $n$ 个顶点的树恰有 $n-1$ 条边；任意两个顶点之间有且仅有一条简单路径。
+  \item 树删去任意一条边会不连通；加入任意一条非树边会形成唯一回路。
+  \item 连通图一定存在生成树；“连通且有 $n-1$ 条边”或“无回路且有 $n-1$ 条边”均可判定为树。
+\end{itemize}
+
+\noindent\textbf{12. 边的权、网和带权路径长度}
+\begin{itemize}[leftmargin=1.8em,itemsep=1.2pt,topsep=1pt]
+  \item 边数最少的路径不一定是带权路径长度最小的路径。
+\end{itemize}
+
+\noindent\textbf{13. 完全图}
+\begin{itemize}[leftmargin=1.8em,itemsep=1.2pt,topsep=1pt]
+  \item \uline{完全图可理解为“满边”：无向图边数为 $\dfrac{n(n-1)}{2}$，有向图的有向边数为 $n(n-1)$。}
+  \item 无向完全图 $K_n$ 中每个顶点的度均为 $n-1$。
+\end{itemize}
+
+\noindent\textbf{14. 稠密图、稀疏图}
+\begin{itemize}[leftmargin=1.8em,itemsep=1.2pt,topsep=1pt]
+  \item 完全图是典型的稠密图，树是典型的稀疏图；二者是相对概念，没有绝对分界。
+\end{itemize}
+
+\noindent\textbf{15. 有向树}
+\begin{itemize}[leftmargin=1.8em,itemsep=1.2pt,topsep=1pt]
+  \item 含 $n$ 个顶点的有向树有 $n-1$ 条有向边；入度为 $0$ 的根唯一，其余顶点的入度均为 $1$。
+\end{itemize}
+
+\end{document}
